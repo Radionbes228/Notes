@@ -1,0 +1,19 @@
+.mainDiv{
+    padding-top: 50px;
+}
+
+.Div{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.home{
+    width: 55px;
+}
+
+.ariaclass{
+    text-align-all: start;
+}

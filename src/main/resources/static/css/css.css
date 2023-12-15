@@ -1,0 +1,20 @@
+
+
+.item{
+    display: flex;
+    overflow-x: auto;
+}
+
+.item a{
+    text-decoration: none;
+}
+
+.create{
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.create textarea{
+    width: 100mm;
+}
