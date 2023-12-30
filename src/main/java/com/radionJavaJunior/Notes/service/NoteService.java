@@ -14,18 +14,18 @@ public class NoteService {
 
     private NoteRepository noteRepository;
 
-    public void create(NoteEntity noteEntity){
+    public NoteEntity create(NoteEntity noteEntity){
         noteEntity.setCreateAt(Instant.now());
-        noteRepository.save(noteEntity);
+        return noteRepository.save(noteEntity);
     }
 
     public List<NoteEntity> findAll(){
         return noteRepository.findAll();
     }
-    public void update(NoteEntity noteEntity, Instant instant){
+    public NoteEntity update(NoteEntity noteEntity, Instant instant){
         noteEntity.setUpdateAt(instant);
         noteEntity.setDescription(noteEntity.getDescription());
-        noteRepository.save(noteEntity);
+        return noteRepository.save(noteEntity);
     }
     public NoteEntity findById(Long id){
         return noteRepository.findById(id).orElse(null);
