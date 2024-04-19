@@ -2,34 +2,37 @@ package com.radionJavaJunior.Notes.contrioller;
 
 import com.radionJavaJunior.Notes.service.NoteService;
 import com.radionJavaJunior.Notes.entity.NoteEntity;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/note")
 public class NoteController {
 
     private NoteService noteService;
 
-    @GetMapping("/homePageGet")
+    @GetMapping("/home")
     public String home(Model model){
-        List<NoteEntity> noteEntityList = noteService.findAll();
+        Iterable<NoteEntity> noteEntityList = noteService.findAll();
         model.addAttribute("notes", noteEntityList);
         return "TTT";
     }
 
-    @PostMapping("/homePagePost")
-    public String createNote(NoteEntity noteEntity){
-        noteService.create(noteEntity);
-        return "redirect:/note/homePageGet";
+    @PostMapping("/home")
+    public String createNote(@Valid NoteEntity noteEntity, Model model){
+        try {
+            noteService.create(noteEntity);
+            return "redirect:/home";
+        }catch (Exception e){
+            model.addAttribute("exception", "Такая запись уже есть");
+            return home(model);
+        }
     }
-
 
     @GetMapping("/info/{id}")
     public String infoNote(@PathVariable("id") Long id, Model model){
@@ -41,13 +44,12 @@ public class NoteController {
     @PostMapping("/up")
     public String update(NoteEntity noteEntity){
         noteService.update(noteEntity, Instant.now());
-        return "redirect:/note/homePageGet";
+        return "redirect:/home";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id){
         noteService.delete(id);
-        return "redirect:/note/homePageGet";
+        return "redirect:/home";
     }
-
 }

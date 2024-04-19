@@ -15,7 +15,7 @@
 
 <div class="item">
     <#list notes as note>
-        <a href="/note/info/${note.getId()}">
+        <a href="/info/${note.getId()}">
             <div class="card border-info mb-3" style="width: 18rem; margin: 25px 25px;">
                 <div class="card-header">${note.getTitle()}</div>
                 <div class="card-body">
@@ -31,8 +31,11 @@
 </div>
 
 <#--Создание заметки-->
-<form method="POST" action="/note/homePagePost">
+<form method="POST" action="/home">
     <div class="create">
+        <#if exception?has_content>
+            <h5 style="color: red; margin: 0 auto">${exception}</h5>
+        </#if>
         Имя<br><input type="text" name="title"><br>
         Текст<br><textarea name="description"></textarea><br>
 

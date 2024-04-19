@@ -13,17 +13,17 @@
 
 <div class="mainDiv">
     <div class="Div">
-        <form action="/note/up" method="POST">
+        <form action="/up" method="POST">
             <div class="mb-3">
                 <input type="hidden" name="id" value="${noteInfo.getId()}">
-                <input type="hidden" name="createAt" value="${noteInfo.getCreateAt()}">
+                <#--<input type="hidden" name="createAt" value="${noteInfo.getCreateAt()}">
 
                 <div style="display: flex; font-size: 10px">
                     <p>Время создания: ${noteInfo.getCreateAt()}</p>
                     <#if noteInfo.getUpdateAt()?has_content>
                         <p>Время изминения: ${noteInfo.getCreateAt()}</p>
                     </#if>
-                </div>
+                </div>-->
 
                 <label for="exampleFormControlInput1" class="form-label">Название:</label>
                 <input name="title" type="text" class="form-control" id="exampleFormControlInput1" value="${noteInfo.getTitle()}">
@@ -38,12 +38,12 @@
 
             <input type="submit" value="Cохранить">
         </form>
-        <form action="/note/delete/${noteInfo.getId()}" method="POST">
+        <form action="/delete/${noteInfo.getId()}" method="POST">
             <input type="submit" value="Удалить">
         </form>
 
         <div class="home">
-            <form action="/note/homePageGet">
+            <form action="/home">
                 <input type="submit" value="На главную">
             </form>
         </div>
